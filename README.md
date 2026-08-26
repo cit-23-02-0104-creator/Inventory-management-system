@@ -1,220 +1,355 @@
-📦 Inventory Management & Stock Prediction System
+
+# 📦 Inventory Management & Stock Prediction System
 
 <p align="center">
+  <img src="static/images/logo.png" alt="Inventory Management System Logo" width="180">
+</p>
 
-<strong>{=html}A modern Flask-based Inventory Management System with
-Machine Learning stock prediction, low-stock alerts, inventory updates,
-and analytics.</strong>{=html}
+<h3 align="center">
+  Smart Inventory Management with Machine Learning Stock Prediction
+</h3>
 
+<p align="center">
+  A Flask-based web application for managing inventory, monitoring stock levels, predicting future product demand, and generating automated stock alerts.
 </p>
 
 <p align="center">
 
-<a href="https://github.com/cit-23-02-0104-creator/Inventory-management-system">{=html}
-<img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">{=html}
-</a>{=html}
-<a href="https://github.com/cit-23-02-0104-creator/Inventory-management-system/issues">{=html}
-<img src="https://img.shields.io/badge/Issues-GitHub-0A0A0A?style=for-the-badge&logo=github" alt="GitHub Issues">{=html}
-</a>{=html}
-<img src="https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">{=html}
-<img src="https://img.shields.io/badge/Flask-3.x-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask">{=html}
-<img src="https://img.shields.io/badge/Machine%20Learning-Random%20Forest-2E7D32?style=for-the-badge" alt="Machine Learning">{=html}
+[![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.x-black?logo=flask)](https://flask.palletsprojects.com/)
+[![Machine Learning](https://img.shields.io/badge/ML-Random%20Forest-green)](https://scikit-learn.org/)
+[![Database](https://img.shields.io/badge/Database-SQLite-lightgrey)](https://www.sqlite.org/)
+[![Power BI](https://img.shields.io/badge/Analytics-Power%20BI-yellow?logo=powerbi)](https://powerbi.microsoft.com/)
 
 </p>
 
-🔗 Quick Links
+---
 
-Resource                            Link
+## 🔗 Project Links
 
-📁 GitHub Repository                Open Repository
+### 📁 GitHub Repository
 
-📥 Clone Repository                 Clone from GitHub
+**Repository:**
+https://github.com/cit-23-02-0104-creator/Inventory-management-system
 
-🐛 Issues                           Report an Issue
+### 📥 Clone Repository
 
-🌿 Main Branch                      View main
+```bash
+git clone https://github.com/cit-23-02-0104-creator/Inventory-management-system.git
+```
 
-📄 Application                      app.py
+Then:
 
-📦 Dependencies                     requirements.txt
+```bash
+cd Inventory-management-system
+```
 
-🤖 Model Training                   train_model.py
+---
 
-📌 Project Overview
+# 📌 Project Overview
 
-The Inventory Management & Stock Prediction System is a web-based
-application developed using Python, Flask, SQLite, Pandas, and Machine
-Learning.
+The **Inventory Management & Stock Prediction System** is a web-based inventory management application developed using **Python, Flask, SQLite, Pandas, Scikit-learn, HTML, CSS and JavaScript**.
 
-The system helps users manage inventory, monitor stock levels, predict
-future product demand, and receive automated notifications when stock
-becomes low or unavailable.
+The system combines traditional inventory management with **Machine Learning-based stock forecasting** to help users understand current inventory levels and estimate future product demand.
 
-It combines traditional inventory management with a Random Forest
-Regression model to provide data-driven stock forecasting.
+It provides features for:
 
-🎯 Main Goals
+* 🔐 User Registration & Login
+* 📦 Inventory Management
+* 📈 Stock Monitoring
+* ⚠️ Low Stock Detection
+* 🚫 Out-of-Stock Detection
+* 🤖 Machine Learning Stock Prediction
+* 🔮 Manual Future Stock Forecasting
+* 📊 Sales & Stock Analytics
+* 📧 Automated Email Alerts
+* 📅 Daily Stock Reports
+* 📆 Monthly Stock Forecast Reports
+* 📊 Power BI Analytics Dashboards
+* 🗄️ SQLite Database
+* 🌐 Flask Web Interface
+* ☁️ Cloud Deployment Support
 
-Manage product inventory efficiently
+---
 
-Monitor low-stock and out-of-stock products
+# ✨ Main Features
 
-Predict future product sales
+## 🔐 1. User Registration & Login
 
-Estimate additional stock requirements
+Users can create an account and securely log into the system.
 
-Provide a simple web-based dashboard
+The application uses:
 
-Send automated inventory notifications
+* Flask sessions
+* Password hashing
+* SQLite database
+* Werkzeug security utilities
 
-Support data-driven business decisions
+### Authentication Flow
 
-✨ Key Features
+```text
+User
+ │
+ ├── Sign Up
+ │
+ ├── Login
+ │
+ └── Dashboard
+```
 
-🔐 User Authentication
+---
 
-User registration
+## 📦 2. Inventory Management
 
-Secure password hashing
+Users can manage product stock through the inventory interface.
 
-Login and logout
+The system supports:
 
-Session-based authentication
+* Product ID
+* Product Name
+* Product Category
+* Current Stock Quantity
+* Stock Updates
 
-SQLite database for user records
+Users can increase or decrease stock quantities based on inventory changes.
 
-📦 Inventory Management
+---
 
-View inventory data
+## ⚠️ 3. Low Stock & Out-of-Stock Monitoring
 
-Add or update stock quantities
+The system automatically checks inventory levels.
 
-Track product IDs and product names
+### Stock Status
 
-Automatically save updated inventory data
+| Stock Level | Status          |
+| ----------- | --------------- |
+| `0`         | 🚫 Out of Stock |
+| `< 25`      | ⚠️ Low Stock    |
+| `>= 25`     | ✅ Normal Stock  |
 
-🚨 Stock Monitoring
+The low-stock threshold is currently configured as:
 
-The application continuously checks inventory levels.
+```python
+LOW_STOCK_THRESHOLD = 25
+```
 
-Out of Stock: 0 units
+---
 
-Low Stock: below 25 units
+# 🤖 4. Machine Learning Stock Prediction
 
-Automated low-stock checking
+One of the main features of this project is the **Machine Learning-based stock prediction system**.
 
-Email notification support
+The application uses a:
 
-🤖 Machine Learning Stock Prediction
+### 🌳 Random Forest Regression Model
 
-The system uses a Random Forest Regression model to forecast future
-sales.
+The model predicts future product sales using historical sales information.
 
-Model features include:
+### Model Features
 
+The model uses:
+
+```text
 Lag_1
-
 Lag_2
-
 Lag_3
-
 Lag_6
-
 Year
-
 Month
+```
 
-Target variable:
+### Target Variable
 
+```text
 Units_Sold
+```
 
-The model is trained from historical sales data and stored as:
+The model is stored in:
 
+```text
 Stock_prediction_model.pkl
+```
 
-🔮 Manual Prediction
+---
+
+# 🔮 5. Manual Stock Prediction
 
 Users can select:
 
+* Product
+* Prediction Year
+* Prediction Month
+
+The system then predicts future sales and calculates the required additional stock.
+
+### Example
+
+```text
+Product
+   ↓
+Historical Sales
+   ↓
+Machine Learning Model
+   ↓
+Predicted Sales
+   ↓
+Compare With Current Stock
+   ↓
+Required Stock
+```
+
+The prediction result includes:
+
+```text
 Product ID
-
-Prediction month
-
-Prediction year
-
-The system returns:
-
-Product name
-
+Product Name
 Category
+Predicted Sales
+Current Stock
+Required Stock to Add
+```
 
-Predicted sales
+---
 
-Current stock
+# 📧 6. Automated Email Alerts
 
-Required stock to add
+The application includes automated Gmail-based notification functionality.
 
-📊 Analytics
+The system can send:
 
-The project supports analytics dashboards using Power BI files:
+### ⚠️ Low Stock Alerts
 
+When products reach low-stock levels.
+
+### 🚫 Out-of-Stock Alerts
+
+When product stock reaches zero.
+
+### 📋 Daily Stock Reports
+
+A daily summary of current inventory.
+
+### 🔮 Monthly Stock Forecast
+
+A prediction of the stock required for the upcoming month.
+
+---
+
+# ⏰ Automated Scheduler
+
+The project uses the Python `schedule` library for background tasks.
+
+Current scheduled operations include:
+
+```text
+Every 30 seconds
+      ↓
+Low Stock Check
+```
+
+```text
+Daily
+  ↓
+End-of-Day Stock Report
+```
+
+```text
+Daily
+  ↓
+Monthly Stock Forecast
+```
+
+> The exact scheduled times are configured inside `app.py` and can be changed according to deployment requirements.
+
+---
+
+# 📊 7. Analytics Dashboards
+
+The project includes Power BI dashboard files:
+
+```text
 Sales analysis.pbix
-
 Stock analysis.pbix
+```
 
-Power BI reports may require the correct sharing/embedding permissions
-before they can be viewed by other users.
+These dashboards can be used to analyze:
 
-📧 Automated Email Reports
+* Sales performance
+* Product performance
+* Stock levels
+* Inventory trends
+* Business insights
+* Product demand
 
-The application supports Gmail-based notifications for:
+> Power BI reports may require appropriate Power BI sharing or embedding permissions before they can be viewed publicly.
 
-Low-stock alerts
+---
 
-Out-of-stock alerts
+# 🧠 Machine Learning Workflow
 
-Daily stock reports
+The complete ML workflow is:
 
-Monthly stock forecasts
+```text
+Historical Sales Data
+        │
+        ▼
+Data Cleaning
+        │
+        ▼
+Monthly Sales Aggregation
+        │
+        ▼
+Feature Engineering
+        │
+        ├── Lag_1
+        ├── Lag_2
+        ├── Lag_3
+        ├── Lag_6
+        ├── Year
+        └── Month
+        │
+        ▼
+Train/Test Split
+        │
+        ▼
+Random Forest Regression
+        │
+        ▼
+Stock Prediction Model
+        │
+        ▼
+Future Sales Prediction
+        │
+        ▼
+Required Stock Calculation
+```
 
-For Gmail SMTP, use a Gmail App Password where required. Never commit
-real passwords or secrets to GitHub.
+---
 
-🛠️ Technology Stack
+# 🗂️ Project Structure
 
-Technology        Purpose
-
-🐍 Python         Core programming language
-🌐 Flask          Web application framework
-🗄️ SQLite         User database
-🐼 Pandas         Data processing
-🔢 NumPy          Numerical operations
-🤖 Scikit-learn   Machine Learning
-💾 Joblib         ML model storage/loading
-📧 SMTP / Gmail   Email notifications
-📊 Power BI       Data visualization
-🚀 Gunicorn       Production WSGI server
-🎨 HTML/CSS       Frontend
-
-📂 Project Structure
-
+```text
 Inventory-management-system/
 │
 ├── app.py
 ├── train_model.py
+├── test_email.py
+├── s.py
+│
+├── Stock_prediction_model.pkl
+│
+├── inventory_data.csv
+├── supermarket_sales.csv
+│
 ├── requirements.txt
 ├── Procfile
 ├── .env.example
 ├── .gitignore
 │
-├── inventory_data.csv
-├── supermarket_sales.csv
-├── Stock_prediction_model.pkl
-│
 ├── templates/
+│   ├── Main.html
 │   ├── index.html
 │   ├── intro.html
-│   ├── Main.html
 │   ├── login.html
 │   ├── signup.html
 │   ├── add_inventory.html
@@ -224,367 +359,639 @@ Inventory-management-system/
 │
 ├── static/
 │   ├── css/
+│   │   └── style.css
+│   │
 │   └── images/
+│       ├── logo.png
+│       ├── inventry.jpg
+│       ├── behavior.png
+│       ├── predict.jpg
+│       ├── Predict.png
+│       ├── add.png
+│       ├── dashboards.jpg
+│       ├── Forecast.png
+│       └── ...
 │
 ├── Sales analysis.pbix
 ├── Stock analysis.pbix
 │
 └── README.md
+```
 
-🚀 Getting Started
+---
 
-1️⃣ Clone the Repository
+# 🛠️ Technologies Used
 
-Open Command Prompt / PowerShell / Terminal and run:
+## 💻 Backend
 
+* Python
+* Flask
+* SQLite
+* Gunicorn
+
+## 📊 Data Processing
+
+* Pandas
+* NumPy
+
+## 🤖 Machine Learning
+
+* Scikit-learn
+* Random Forest Regression
+* Joblib
+
+## 🎨 Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+
+## 📧 Email
+
+* Python SMTP
+* Gmail SMTP Server
+
+## 📊 Business Intelligence
+
+* Microsoft Power BI
+
+## 🚀 Deployment
+
+* Gunicorn
+* Procfile
+* Environment Variables
+
+---
+
+# 📋 Requirements
+
+Before running the project, make sure you have:
+
+* Python 3.x
+* pip
+* Git
+
+Check Python:
+
+```bash
+python --version
+```
+
+Check pip:
+
+```bash
+pip --version
+```
+
+---
+
+# 🚀 Installation & Setup
+
+## 1️⃣ Clone the Repository
+
+```bash
 git clone https://github.com/cit-23-02-0104-creator/Inventory-management-system.git
+```
 
-Then enter the project folder:
+Move into the project directory:
 
+```bash
 cd Inventory-management-system
+```
 
-You can also open the repository directly:
+---
 
-👉
-https://github.com/cit-23-02-0104-creator/Inventory-management-system
+## 2️⃣ Create a Virtual Environment
 
-2️⃣ Create a Virtual Environment
+### Windows
 
-Windows PowerShell
-
+```powershell
 python -m venv .venv
+```
+
+Activate:
+
+```powershell
 .\.venv\Scripts\Activate.ps1
+```
 
-Windows CMD
+If PowerShell blocks activation, you can use:
 
-python -m venv .venv
-.venv\Scripts\activate
+```powershell
+.\.venv\Scripts\activate
+```
 
-macOS / Linux
+### macOS / Linux
 
+```bash
 python3 -m venv .venv
+```
+
+Activate:
+
+```bash
 source .venv/bin/activate
+```
 
-3️⃣ Install Dependencies
+---
 
+# 3️⃣ Install Dependencies
+
+Run:
+
+```bash
 pip install -r requirements.txt
+```
 
-If pip is not recognized, try:
+The main dependencies include:
 
-python -m pip install -r requirements.txt
+```text
+Flask
+Werkzeug
+Pandas
+NumPy
+Scikit-learn
+Joblib
+Python-dateutil
+Schedule
+Gunicorn
+```
 
-4️⃣ Configure Environment Variables
+---
 
-Create a .env file based on .env.example.
+# 🔑 4️⃣ Configure Environment Variables
 
-Example:
+Create a `.env` file or configure the environment variable:
 
+```text
 FLASK_SECRET_KEY=your-long-random-secret-key
+```
 
-Windows PowerShell
+### Windows PowerShell
 
+```powershell
 $env:FLASK_SECRET_KEY="your-long-random-secret-key"
+```
 
-macOS / Linux
+### macOS / Linux
 
+```bash
 export FLASK_SECRET_KEY="your-long-random-secret-key"
+```
 
-⚠️ Do not upload your real .env file to GitHub.
+> Never upload your real `.env` file or secret keys to GitHub.
 
-5️⃣ Run the Application
+---
 
+# ▶️ 5️⃣ Run the Application
+
+Start the Flask application:
+
+```bash
 python app.py
+```
 
-When the server starts, open:
+The application will normally be available at:
 
-🏠 Application
-
+```text
 http://127.0.0.1:5000
+```
 
-❤️ Health Check
+Open this in your browser.
 
+---
+
+# ❤️ Health Check
+
+The application also provides a health-check endpoint:
+
+```text
 http://127.0.0.1:5000/health
+```
 
-The health endpoint should return a response similar to:
+This can be useful when deploying the application to a cloud hosting platform.
 
-{
-  "status": "ok",
-  "model_loaded": true
-}
+---
 
-🌐 Application Routes
+# 🤖 Retrain the Machine Learning Model
 
-After starting Flask, these routes are available:
+If you want to train the model again using the included sales dataset:
 
-Page                    Local Link                                        Purpose
-
-🏠 Home                 Open                    Main application
-
-👋 Intro                Open               Introduction page
-
-🔑 Login                Open               User login
-
-📝 Signup               Open              Create account
-
-📦 Add Inventory        Open       Update stock
-
-🔮 Prediction           Open   Manual stock prediction
-
-📊 Dashboards           Open          Analytics dashboards
-
-📖 Instructions         Open        System instructions
-
-❤️ Health               Open              Application health
-status
-
-🚪 Logout               /logout                                         Logout from the system
-
-Note: The local links above work after the Flask application is
-running on port 5000.
-
-🧠 Machine Learning Workflow
-
-The prediction pipeline follows these steps:
-
-Historical Sales Data
-        ↓
-Data Cleaning
-        ↓
-Monthly Sales Aggregation
-        ↓
-Lag Feature Creation
-        ↓
-Random Forest Regression
-        ↓
-Future Sales Prediction
-        ↓
-Compare with Current Stock
-        ↓
-Required Stock Calculation
-
-Training Features
-
-Lag_1
-Lag_2
-Lag_3
-Lag_6
-Year
-Month
-
-Prediction Output
-
-Predicted Sales
-Current Stock
-Required Stock to Add
-
-🔄 Retrain the Model
-
-If you update the sales dataset and want to train the model again:
-
+```bash
 python train_model.py
+```
 
-The trained model will be saved as:
+The training script uses:
 
+```text
+supermarket_sales.csv
+```
+
+and generates:
+
+```text
 Stock_prediction_model.pkl
+```
 
-You can review the training script here:
+The model uses:
 
-👉 train_model.py on
-GitHub
+```text
+RandomForestRegressor
+```
 
-📧 Gmail Email Alerts
+with:
 
-The application can send email notifications using Gmail SMTP.
+```text
+n_estimators = 100
+max_depth = 10
+random_state = 42
+```
 
-The system can generate:
+---
 
-🚨 Low Stock Alert
+# 📧 Gmail Email Configuration
 
-Sent when products fall below the configured threshold.
+The application contains Gmail notification functionality.
 
-❌ Out of Stock Alert
+For Gmail SMTP, use:
 
-Sent when a product reaches 0 units.
+```text
+smtp.gmail.com
+Port: 465
+SSL: Enabled
+```
 
-📅 Daily Stock Report
+### ⚠️ Security Recommendation
 
-Contains current stock levels for products.
+Do **not** use your normal Gmail account password in a production application.
 
-📈 Monthly Stock Forecast
+Use a **Google App Password** where applicable.
 
-Provides predicted stock requirements for the upcoming month.
+Also, never commit real email credentials to GitHub.
 
-🔐 Gmail Security
+---
 
-Do not store real Gmail passwords directly in source code.
+# 🔒 Security
 
-For Gmail SMTP authentication, use a dedicated App Password where
-applicable.
+Please make sure the following files/data are **not committed** to GitHub:
 
-⏰ Automated Scheduler
-
-The application includes scheduled background tasks.
-
-Current scheduling configuration:
-
-Low-stock check       → Every 30 seconds
-Daily stock report    → 22:57
-Monthly forecast      → 22:58
-
-These schedules are configured inside app.py.
-
-For production deployments, make sure the hosting environment supports
-long-running background processes.
-
-☁️ Deployment
-
-The project includes a Procfile and Gunicorn configuration.
-
-Production start command:
-
-gunicorn app:app
-
-The application also supports the PORT environment variable.
-
-Example:
-
-PORT=5000
-
-Deployment Files
-
-Procfile
-
-requirements.txt
-
-.env.example
-
-🔒 Security
-
-Please never commit the following to GitHub:
-
+```text
 .env
 users.db
 Real Gmail passwords
 Gmail App Passwords
-API keys
-Private credentials
-Secret configuration files
+Firebase credentials
+Private API keys
+Secret keys
+```
 
-Recommended practice:
+The project should use environment variables for sensitive configuration.
 
-.env.example  → Safe template
-.env          → Local/private configuration
-.gitignore    → Prevent secrets from being committed
+---
 
-The Flask secret key should always be replaced with a strong random
-value in production.
+# 🗃️ Data Files
 
-🧪 Testing
+The project includes two main datasets:
 
-The project includes an email testing script:
+### Inventory Dataset
 
-python test_email.py
-
-Run tests only after configuring the required email credentials.
-
-🐛 Troubleshooting
-
-ModuleNotFoundError
-
-Install the dependencies again:
-
-pip install -r requirements.txt
-
-Address already in use
-
-Another application is using port 5000.
-
-Stop the previous Flask process or use another port:
-
-Windows PowerShell
-
-$env:PORT="5001"
-python app.py
-
-Then open:
-
-http://127.0.0.1:5001
-
-Model loading error
-
-Make sure this file exists in the application directory:
-
-Stock_prediction_model.pkl
-
-If necessary, regenerate it:
-
-python train_model.py
-
-CSV file not found
-
-Make sure these files are available in the expected project directory:
-
+```text
 inventory_data.csv
+```
+
+Used for:
+
+* Product information
+* Product IDs
+* Current stock quantities
+* Inventory management
+
+### Sales Dataset
+
+```text
 supermarket_sales.csv
+```
 
-📊 Power BI Dashboards
+Used for:
 
-The project contains Power BI analytics resources for:
+* Historical sales
+* Monthly sales aggregation
+* Machine Learning training
+* Stock prediction
 
-Sales analysis
+---
 
-Stock analysis
+# 📈 Prediction Example
 
-Inventory trends
+The system can perform calculations such as:
 
-Business insights
+```text
+Current Stock = 40 units
 
-Files:
+Predicted Future Sales = 75 units
 
+Required Additional Stock
+= 75 - 40
+
+= 35 units
+```
+
+Therefore:
+
+```text
+Required Stock to Add = 35 units
+```
+
+This allows inventory managers to make more informed stock decisions.
+
+---
+
+# 🌐 Deployment
+
+The project includes deployment support using:
+
+```text
+Gunicorn
+Procfile
+requirements.txt
+Environment Variables
+```
+
+The included `Procfile` contains:
+
+```text
+web: gunicorn app:app
+```
+
+Therefore, compatible hosting platforms can use:
+
+```bash
+gunicorn app:app
+```
+
+The application also supports configurable hosting through environment variables.
+
+---
+
+# ☁️ Production Configuration
+
+Set:
+
+```text
+FLASK_SECRET_KEY=your-secure-secret
+```
+
+and configure the application platform to use:
+
+```text
+gunicorn app:app
+```
+
+Make sure all dependencies from:
+
+```text
+requirements.txt
+```
+
+are installed during deployment.
+
+---
+
+# 🧪 Testing
+
+The project includes:
+
+```text
+test_email.py
+```
+
+which can be used for testing email functionality.
+
+Before testing email features in production, make sure Gmail SMTP credentials are correctly configured and protected.
+
+---
+
+# 🎯 Project Objectives
+
+The main objectives of this project are:
+
+1. To simplify inventory management.
+2. To monitor product stock levels.
+3. To identify low-stock and out-of-stock products.
+4. To predict future product demand.
+5. To support better stock planning.
+6. To reduce the risk of stock shortages.
+7. To provide useful sales and inventory analytics.
+8. To automate stock-related email notifications.
+9. To combine inventory management with Machine Learning.
+10. To provide a user-friendly web-based management system.
+
+---
+
+# 🌟 Advantages
+
+### ✅ Better Inventory Control
+
+Users can easily monitor and update inventory.
+
+### ✅ Reduced Stock Shortages
+
+Future demand prediction helps identify products that may require additional stock.
+
+### ✅ Automated Notifications
+
+Users can receive stock-related email alerts.
+
+### ✅ Data-Driven Decisions
+
+Machine Learning and Power BI dashboards provide useful insights.
+
+### ✅ Easy to Use
+
+The Flask web interface provides a simple way to interact with the system.
+
+### ✅ Deployment Ready
+
+The project includes the necessary files for cloud deployment.
+
+---
+
+# 🔮 Future Improvements
+
+Possible future improvements include:
+
+* 📱 Mobile-responsive improvements
+* 👥 Role-based user management
+* 🔐 Two-factor authentication
+* 🔑 Better secret/credential management
+* 📊 More advanced analytics
+* 🤖 Advanced forecasting algorithms
+* 📈 Real-time dashboard updates
+* 🛒 Supplier management
+* 🧾 Purchase order management
+* 📦 Barcode/QR code integration
+* 🔔 Browser notifications
+* ☁️ Cloud database integration
+* 🧠 Deep Learning-based demand forecasting
+* 📡 REST API integration
+
+---
+
+# 📸 Application Screenshots
+
+The project contains interface images inside:
+
+```text
+static/images/
+```
+
+Some of the available screens/features include:
+
+* Login
+* Signup
+* Main Dashboard
+* Inventory Management
+* Stock Prediction
+* Forecasting
+* Analytics Dashboard
+
+You can add screenshots to this README using:
+
+```markdown
+![Login](static/images/Login.gif)
+
+![Dashboard](static/images/main.png)
+
+![Stock Prediction](static/images/Predict.png)
+
+![Forecast](static/images/Forecast.png)
+
+![Inventory](static/images/add.png)
+
+![Analytics Dashboard](static/images/dashboards.jpg)
+```
+
+---
+
+# 📊 Power BI Reports
+
+Included Power BI files:
+
+```text
 Sales analysis.pbix
 Stock analysis.pbix
+```
 
-Power BI files may require Microsoft Power BI Desktop and the correct
-data/report permissions.
+These reports can be opened using Microsoft Power BI Desktop.
 
-👥 Contributors
+Official Power BI website:
 
-This project is maintained in the GitHub repository:
+https://powerbi.microsoft.com/
 
-👉
-cit-23-02-0104-creator/Inventory-management-system
+---
 
-For contribution or issue reporting:
+# 🧩 System Architecture
 
-👉 Open GitHub
-Issues
+```text
+                    ┌──────────────────────┐
+                    │       User           │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │   Flask Web App      │
+                    │       app.py         │
+                    └──────────┬───────────┘
+                               │
+             ┌─────────────────┼─────────────────┐
+             │                 │                 │
+             ▼                 ▼                 ▼
+       ┌───────────┐     ┌─────────────┐   ┌─────────────┐
+       │  SQLite   │     │ Inventory   │   │ Sales Data  │
+       │  Database │     │    Data     │   │    CSV      │
+       └───────────┘     └─────────────┘   └──────┬──────┘
+                                                  │
+                                                  ▼
+                                        ┌──────────────────┐
+                                        │ Machine Learning │
+                                        │ Random Forest    │
+                                        └────────┬─────────┘
+                                                 │
+                                                 ▼
+                                        ┌──────────────────┐
+                                        │ Stock Prediction │
+                                        └──────────────────┘
+                                                 │
+                          ┌──────────────────────┼─────────────────────┐
+                          │                      │                     │
+                          ▼                      ▼                     ▼
+                    ┌───────────┐        ┌────────────┐        ┌────────────┐
+                    │   Email   │        │  Flask UI  │        │  Power BI  │
+                    │  Alerts   │        │ Dashboard  │        │ Dashboards │
+                    └───────────┘        └────────────┘        └────────────┘
+```
 
-⭐ Support the Project
+---
 
-If you find this project useful:
+# 📚 Learning Outcomes
 
-⭐ Star the repository
+This project demonstrates practical knowledge of:
 
-🍴 Fork the project
+* Python programming
+* Flask web development
+* HTML/CSS frontend development
+* SQLite database management
+* User authentication
+* Password hashing
+* Data preprocessing
+* Pandas data analysis
+* Machine Learning
+* Random Forest Regression
+* Feature engineering
+* Time-series lag features
+* Email automation
+* Background scheduling
+* Power BI analytics
+* Git & GitHub
+* Web application deployment
 
-🐛 Report bugs through Issues
+---
 
-💡 Suggest improvements
+# 👨‍💻 Repository
 
-🔧 Submit a Pull Request
+This project is maintained in GitHub:
 
-👉 Visit the GitHub
-Repository
+**Inventory Management System**
 
-📜 License
+https://github.com/cit-23-02-0104-creator/Inventory-management-system
 
-If a specific license has not yet been added to the repository, treat
-this project as all rights reserved by the project owner until a
-license is explicitly provided.
+### Clone Command
+
+```bash
+git clone https://github.com/cit-23-02-0104-creator/Inventory-management-system.git
+```
+
+---
+
+# ⭐ Support
+
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
+
+**Repository:**
+https://github.com/cit-23-02-0104-creator/Inventory-management-system
+
+---
+
+# 📜 License
+
+This project is intended for educational and academic purposes.
+
+Please check the repository for the applicable license and usage terms.
+
+---
 
 <p align="center">
-
-<strong>{=html}📦 Inventory Management System • 🤖 ML Stock Prediction
-• 📊 Analytics • 🚨 Smart Alerts</strong>{=html}
-
+  <b>📦 Inventory Management & Stock Prediction System</b>
+  <br>
+  Smart Inventory • Machine Learning • Analytics • Automation
 </p>
