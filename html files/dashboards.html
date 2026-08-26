@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboards</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+    --gradient-bg: linear-gradient(135deg, #497b7bff, #223b3d6f, #206168ff);
+    --glass-bg: rgba(255,255,255,0.2);
+    --glass-border: rgba(255,255,255,0.35);
+    --btn-bg: rgba(220,53,69,0.75);
+    --btn-hover: rgba(220,53,69,0.95);
+    --card-width: 1400px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: var(--gradient-bg);
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 2000;
+    background: rgba(128,119,120,0.8);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: background 0.25s, transform 0.15s;
+}
+
+.back-btn:hover{
+    background: rgba(75,67,68,0.9);
+    transform: translateY(-2px);
+}
+
+/* NAVBAR DROPDOWN */
+.navbar{
+    position: fixed;
+    top: 5px;
+    right: 12px;
+    z-index: 1000;
+}
+
+.dropdown { position: relative; display: inline-block; }
+
+.dropbtn {
+    background: rgba(37,31,31,0.6);
+    color: white;
+    padding: 10px 16px;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.dropbtn:hover { background: rgba(58,53,54,0.6); }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #ffffffa5;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(170, 161, 161, 0.92);
+}
+
+.dropdown-content a {
+    color: #222;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.dropdown-content a:hover { background: rgba(90, 225, 232, 0.74); }
+.dropdown:hover .dropdown-content { display: block; }
+
+
+/* PAGE TITLES */
+h1{
+    color:#fff;
+    margin:6px 0 30px;
+    font-weight: 600;
+    font-size: 40px;
+}
+
+.iframe-title{
+    font-size: 30px;
+    color: #fffafaff;
+    margin: 20px 0 10px;
+    font-weight: 600;
+}
+
+/* GLASS IFRAME WRAPPER */
+.iframe-wrapper{
+    background: var(--glass-bg);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    margin-bottom: 40px;
+    width: 90%;
+    max-width: var(--card-width);
+    padding: 10px;
+}
+
+iframe{
+    width: 100%;
+    height: 700px;
+    border: none;
+    border-radius: 8px;
+}
+
+@media(max-width:768px){
+    iframe{height:500px;}
+    .iframe-wrapper{padding:8px;}
+}
+</style>
+</head>
+<body>
+
+<!-- BACK BUTTON -->
+<a href="/" class="back-btn">
+    <i class="fa-solid fa-arrow-left"></i> Back
+</a>
+
+<!-- TOP-RIGHT DROPDOWN -->
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
+        <div class="dropdown-content">
+            <a href="{{ url_for('manual_prediction') }}"><i class="fa-solid fa-brain"></i> Predict Here</a>
+            <a href="{{ url_for('add_inventory') }}"><i class="fa-solid fa-boxes"></i> Add Inventory</a>
+            <a href="{{ url_for('dashboards') }}"><i class="fa-solid fa-chart-line"></i> Dashboards</a>
+        </div>
+    </div>
+</div>
+
+
+<h1>Dashboards</h1>
+
+<p class="iframe-title">Stock Analysis</p>
+<div class="iframe-wrapper">
+<iframe title="Stock Analysis"
+        src="https://app.fabric.microsoft.com/reportEmbed?reportId=d456b943-8783-40ec-b3f9-9995cb8a8cab&autoAuth=true&ctid=fe8ccb52-ca53-49de-a5b4-50faf33a9cc2"
+        allowfullscreen></iframe>
+</div>
+
+<p class="iframe-title">Sales Analysis</p>
+<div class="iframe-wrapper">
+<iframe title="Sales Analysis"
+        src="https://app.fabric.microsoft.com/reportEmbed?reportId=23118e77-ddde-4d25-8645-6f63d217b2f3&autoAuth=true&ctid=fe8ccb52-ca53-49de-a5b4-50faf33a9cc2"
+        allowfullscreen></iframe>
+</div>
+
+</body>
+</html>

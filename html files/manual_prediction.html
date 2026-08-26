@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Prediction</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+    --nav-height: 64px;
+    --gradient-bg: linear-gradient(135deg, #86b3b3ff, #223b3d99, #6cccd6ff);
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.35);
+    --input-bg: rgba(255,255,255,0.15);
+    --btn-bg: rgba(125, 240, 238, 1);
+    --btn-hover: rgba(49, 70, 69, 0.95);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    padding-top: var(--nav-height);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: var(--gradient-bg);
+    color: #222;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 18px;
+    backdrop-filter: blur(6px);
+    z-index: 1200;
+}
+
+.dropdown { position: relative; display: inline-block; }
+
+.dropbtn {
+    background: rgba(37,31,31,0.6);
+    color: white;
+    padding: 10px 16px;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.dropbtn:hover { background: rgba(58,53,54,0.6); }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #ffffffa5;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(170, 161, 161, 0.92);
+}
+
+.dropdown-content a {
+    color: #222;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    top: calc(100% + 2px);
+}
+
+.dropdown-content a:hover { background: rgba(90, 225, 232, 0.74); }
+.dropdown:hover .dropdown-content { display: block; }
+
+/* MAIN CONTENT */
+main {
+    width: 100%;
+    max-width: 980px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding-bottom: 48px;
+}
+
+.page-title {
+    margin: 10px 0 0px;
+    font-size: 28px;
+    color: #333;
+    align-self: flex-start;
+}
+
+/* GLASSMORPHISM CARD */
+.card {
+    width: 100%;
+    max-width: 500px;
+    background: #f6eeef73;
+    border-radius: 16px;
+    padding: 40px 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    border: 1px solid var(--glass-border);
+    margin: 0 20px;
+}
+
+label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+input[type="text"], input[type="number"] {
+    padding: 20px;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    font-size: 14px;
+    background: var(--input-bg);
+    color: #222;
+    width: 180px;
+    transition: all 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #66e1e1ff;
+    box-shadow: 0 0 8px rgba(251, 248, 248, 0.9);
+}
+
+/* BUTTONS */
+.form-actions {
+    display: flex;
+    justify-content: center;
+}
+
+button[type="submit"] {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--btn-bg);
+    color: black;
+    font-weight: bold;
+    transition: background 0.18s, transform 0.12s;
+}
+
+button[type="submit"]:hover {
+    background: var(--btn-hover);
+    transform: translateY(-2px);
+    
+}
+
+/* RESULT BOX */
+.result {
+    width: 100%;
+    max-width: 550px;
+    background: var(--glass-bg);
+    border-radius: 16px;
+    padding: 18px 22px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    border: 1px solid var(--glass-border);
+}
+
+/* BACK BUTTON */
+.back-top-btn {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 2000;
+    background: rgba(128,119,120,0.8);
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.25s, transform 0.15s;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+.back-top-btn:hover {
+    background: rgba(75,67,68,0.9);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px){
+    .card { padding: 30px 20px; }
+    .page-title { font-size: 24px; }
+    input[type="text"], input[type="number"] { width: 120px; }
+}
+
+/* Container for form and background images */
+
+.form-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+    width: 100%;
+}
+
+/* Background images */
+.bg-image {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.bg-image.left { right: 800px; }
+.bg-image.right { left: 800px; }
+
+.bg-image img {
+    width: 300px;  /* adjust size */
+    opacity: 0.7;  /* semi-transparent for background effect */
+    border-radius: 12px;
+}
+
+
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR DROPDOWN -->
+<header class="navbar">
+  <div class="dropdown">
+    <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
+    <div class="dropdown-content">
+      <a href="{{ url_for('manual_prediction') }}"><i class="fa-solid fa-brain"></i> Predict Here</a>
+      <a href="{{ url_for('add_inventory') }}"><i class="fa-solid fa-boxes"></i> Add Inventory</a>
+      <a href="{{ url_for('dashboards') }}"><i class="fa-solid fa-chart-line"></i> Dashboards</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+
+<main>
+  <main>
+  <div class="form-container">
+
+    
+    <div class="bg-image left">
+      <img src="{{ url_for('static', filename='images/behavior.png') }}" alt="Side Image">
+    </div>
+
+   
+    <div class="bg-image right">
+      <img src="{{ url_for('static', filename='images/forecast.png') }}" alt="Side Image">
+    </div>
+
+   
+    <form class="card" method="POST">
+      <h1 class="page-title">Stock Prediction</h1>
+      <label>
+        <span>Product ID (40-681-9981):</span>
+        <input type="text" name="product_id" required>
+      </label>
+      <label>
+        <span>Year (eg - 2025):</span>
+        <input type="number" name="year" required min="1900">
+      </label>
+      <label>
+        <span>Month ( 1 - 12):</span>
+        <input type="number" name="month" required min="1" max="12">
+      </label>
+      <div class="form-actions">
+        <button type="submit">Predict</button>
+      </div>
+    </form>
+
+  </div>
+
+  {% if forecast %}
+  <div class="result">
+    <h3>Prediction Result</h3>
+    <p><strong>Product:</strong> {{ forecast['Product_Name'] }} ({{ forecast['Product_ID'] }})</p>
+    <p><strong>Category:</strong> {{ forecast['Category'] }}</p>
+    <p><strong>Predicted Sales:</strong> {{ forecast['Predicted_Sales'] }}</p>
+    <p><strong>Current Stock:</strong> {{ forecast['Current_Stock'] }}</p>
+    <p><strong>Required Stock to Add:</strong> {{ forecast['Required_Stock_to_Add'] }}</p>
+  </div>
+  {% endif %}
+
+  <a href="/" class="back-top-btn"><i class="fa-solid fa-arrow-left"></i> Back</a>
+</main>
+
+</body>
+</html>

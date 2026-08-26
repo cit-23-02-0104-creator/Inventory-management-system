@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #497b7bff, #223b3d6f, #206168ff);
+            --form-bg: rgba(255, 255, 255, 0.2);
+            --form-border: rgba(255, 255, 255, 0.35);
+            --input-bg: rgba(255, 255, 255, 0.15);
+            --input-border: rgba(255, 255, 255, 0.35);
+            --btn-bg: rgba(220, 53, 69, 0.75);
+            --btn-hover: rgba(220, 53, 69, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--bg-gradient);
+        }
+
+        .container {
+            background: var(--form-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px 50px;
+            border-radius: 16px;
+            border: 1px solid var(--form-border);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 350px;
+            color: #222;
+            position: relative;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            color: #181616;
+            font-size: 28px;
+        }
+
+        label {
+            font-size: 14px;
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #181616;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 18px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            font-size: 14px;
+            color: #222;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder {
+            color: rgba(34,34,34,0.6);
+        }
+
+        input:focus {
+            outline: none;
+            border: 1px solid #dc3545;
+            box-shadow: 0 0 8px rgba(220, 53, 69, 0.3);
+            background: rgba(255,255,255,0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px 0;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background: var(--btn-bg);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: var(--btn-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #222;
+        }
+
+        a {
+            color: #dc3545;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Floating Chatbot button */
+        .chatbot-btn {
+            position: fixed;
+            bottom: 60px;
+            right: 25px;
+            width: 68px;
+            height: 68px;
+            background: linear-gradient(135deg, #f7ce5f, #fceabb);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0px 8px 25px rgba(0,0,0,0.3);
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            z-index: 2000;
+            animation: pulseGlow 2.4s infinite ease-in-out;
+        }
+
+        .chatbot-btn:hover {
+            transform: scale(1.13);
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.4);
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px rgba(255,200,170,0.4); }
+            50% { box-shadow: 0 0 20px rgba(255,200,170,0.7); }
+            100% { box-shadow: 0 0 10px rgba(255,200,170,0.4); }
+        }
+
+        @media (max-width: 420px) {
+            .container { width: 90%; padding: 30px 20px; }
+            h2 { font-size: 24px; }
+        }
+
+        .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px; /* space between image & form */
+    width: 100%;
+    height: 100vh;
+}
+
+.left-gif {
+    width: 350px;       /* adjust size */
+    height: auto;
+    border-radius: 10px;
+    filter: blur(0.3px);
+    opacity: 0.85
+}
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    <img src="{{ url_for('static', filename='images/signup.gif') }}" class="left-gif">
+
+    <div class="container">
+        <h2>Create Account</h2>
+        <form method="POST">
+            <label>Username:</label>
+            <input type="text" name="username" placeholder="Enter username" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" placeholder="Enter email" required>
+
+            <label>App Password:</label>
+            <input type="password" name="gmail_password" placeholder="Enter App Password" required>
+
+            <label>System Password:</label>
+            <input type="password" name="password" placeholder="Enter system password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+</div>
+
+</body>
+</html>

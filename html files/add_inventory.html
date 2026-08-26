@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Update Inventory</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+    --nav-height: 64px;
+    --gradient-bg: linear-gradient(135deg, #86b3b3ff, #223b3d99, #6cccd6ff);
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.35);
+    --input-bg: rgba(255,255,255,0.15);
+    --btn-bg: rgba(125, 240, 238, 1);
+    --btn-hover: rgba(49, 70, 69, 0.95);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    padding-top: var(--nav-height);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: var(--gradient-bg);
+}
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 18px;
+    backdrop-filter: blur(6px);
+    z-index: 1200;
+}
+
+.dropdown { position: relative; display: inline-block; }
+
+.dropbtn {
+    background: rgba(37,31,31,0.6);
+    color: white;
+    padding: 10px 16px;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.dropbtn:hover { background: rgba(58,53,54,0.6); }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #ffffffa5;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(170, 161, 161, 0.92);
+}
+
+.dropdown-content a {
+    color: #222;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.dropdown-content a:hover { background: rgba(90, 225, 232, 0.74); }
+.dropdown:hover .dropdown-content { display: block; }
+
+
+.back-btn{
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 2000;
+    background: rgba(128,119,120,0.8);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
+
+.back-btn:hover { background: rgba(75,67,68,0.9); transform: translateY(-2px); }
+
+
+.form-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* move form a bit up */
+    width: 100%;
+}
+
+
+.bg-image {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.bg-image.left { right: 600px; }   
+.bg-image.right { left: 600px; }
+
+.bg-image img {
+    width: 350px;  
+    opacity: 0.7;
+    border-radius: 12px;
+}
+
+
+form{
+    position: relative;
+    z-index: 2;
+    background: var(--glass-bg);
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(255, 242, 242, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    min-width: 320px;
+    max-width: 550px;
+    border: 3px solid #ffffff33;
+}
+
+label{
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    color: #0f0e0eff;  
+    font-weight: 600;
+}
+
+input[type="text"], input[type="number"]{
+    padding: 10px;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    width: 160px;
+    font-size: 14px;
+    background: var(--input-bg);
+    color: #222;
+}
+
+input:focus{
+    outline: none;
+    border-color: #7bf7f1ff;
+    box-shadow: 0 0 8px rgba(220,53,69,0.3);
+}
+
+button[type="submit"]{
+    padding: 12px 22px;
+    border-radius: 10px;
+    border: none;
+    background: var(--btn-bg);
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: center;
+}
+
+button[type="submit"]:hover{
+    background: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+main {
+    padding-top: 110px; /* add more space from navbar */
+}
+
+</style>
+</head>
+<body>
+
+<a href="/" class="back-btn" aria-label="Back to main">
+    <i class="fa-solid fa-arrow-left"></i> Back
+</a>
+
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
+        <div class="dropdown-content">
+            <a href="{{ url_for('manual_prediction') }}"><i class="fa-solid fa-brain"></i> Predict Here</a>
+            <a href="{{ url_for('add_inventory') }}"><i class="fa-solid fa-boxes"></i> Add Inventory</a>
+            <a href="{{ url_for('dashboards') }}"><i class="fa-solid fa-chart-line"></i> Dashboards</a>
+        </div>
+    </div>
+</div>
+
+<main>
+  <div class="form-container">
+    <!-- Left background image -->
+    <div class="bg-image left">
+      <img src="{{ url_for('static', filename='images/behavior.png') }}" alt="Side Image">
+    </div>
+
+    <!-- Right background image -->
+    <div class="bg-image right">
+      <img src="{{ url_for('static', filename='images/forecast.png') }}" alt="Side Image">
+    </div>
+
+    <!-- Form -->
+    <form method="POST" aria-label="Add inventory form">
+      <h1>Update Inventory</h1>
+      <label>
+          <span>Product ID (40-681-9981):</span>
+          <input type="text" name="product_id" required>
+      </label>
+      <label>
+          <span>Change (use "+" and "-"):</span>
+          <input type="number" name="change" required>
+      </label>
+      <button type="submit">Update Stock</button>
+    </form>
+  </div>
+</main>
+</body>
+</html>

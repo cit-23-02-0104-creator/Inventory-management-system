@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ session['user'] }}</h1>
+        <a href="/logout">Logout</a>
+
+        <h2>Manual Stock Prediction</h2>
+        <form method="POST">
+            <label>Product ID:</label><br>
+            <input type="text" name="product_id" required><br><br>
+
+            <label>Prediction Year:</label><br>
+            <input type="number" name="year" required><br><br>
+
+            <label>Prediction Month (1-12):</label><br>
+            <input type="number" name="month" min="1" max="12" required><br><br>
+
+            <button type="submit">Predict Stock</button>
+        </form>
+
+        {% if forecast %}
+            <h3>Prediction Result:</h3>
+            <p><strong>Product ID:</strong> {{ forecast['Product_ID'] }}</p>
+            <p><strong>Product Name:</strong> {{ forecast['Product_Name'] }}</p>
+            <p><strong>Category:</strong> {{ forecast['Category'] }}</p>
+            <p><strong>Current Stock:</strong> {{ forecast['Current_Stock'] }}</p>
+            <p><strong>Predicted Sales:</strong> {{ forecast['Predicted_Sales'] }}</p>
+            <p><strong>Required Stock to Add:</strong> {{ forecast['Required_Stock_to_Add'] }}</p>
+        {% endif %}
+
+       <h2>Power BI Dashboards</h2>
+<!-- Embed your Power BI dashboard using a single iframe -->
+<iframe 
+    title="Stock analysis" 
+    width="100%" 
+    height="600" 
+    src="https://app.fabric.microsoft.com/reportEmbed?reportId=d456b943-8783-40ec-b3f9-9995cb8a8cab&autoAuth=true&ctid=fe8ccb52-ca53-49de-a5b4-50faf33a9cc2" 
+    frameborder="0" 
+    allowFullScreen="true">
+</iframe>
+
+<h3>Update Stock</h3>
+<form action="/update_stock" method="POST">
+  <label>Product ID:</label>
+  <input type="text" name="product_id" required>
+  
+  <label>Change (e.g., -5 for reduce, +10 for add):</label>
+  <input type="number" name="change" required>
+  
+  <button type="submit">Update Stock</button>
+</form>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instructions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #497b7bff, #223b3d6f, #206168ff);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 42px;
+            margin-bottom: 50px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+
+        .instructions-wrapper {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .instruction-card {
+            flex: 1 1 42%;
+            min-width: 320px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            animation: fadeUp 0.8s ease;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .instruction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.4);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .instruction-card h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .instruction-card p,
+        .instruction-card ol,
+        .instruction-card li {
+            line-height: 1.8;
+            font-size: 16px;
+            color: #f2f2f2;
+        }
+
+        .instruction-card ol {
+            padding-left: 20px;
+        }
+
+        /* Icons as background */
+        .instruction-card::before {
+            content: '';
+            position: absolute;
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 120px;
+            color: rgba(255,255,255,0.1);
+            top: 20px;
+            right: 20px;
+            pointer-events: none;
+        }
+
+        .predict-card::before { content: "\f7af"; } /* brain */
+        .alert-card::before { content: "\f0f3"; } /* bell */
+        .add-card::before { content: "\f187"; } /* boxes */
+        .dashboard-card::before { content: "\f201"; } /* chart-line */
+
+        /* Back button */
+        .back-btn {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            padding: 12px 18px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 16px;
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .instruction-card {
+                flex: 1 1 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <a href="{{ url_for('main_page') }}" class="back-btn">
+        Back
+    </a>
+
+    <h1>System Instructions</h1>
+
+    <div class="instructions-wrapper">
+
+        <!-- How to Predict -->
+        <div class="instruction-card predict-card">
+            <h2><i class="fa-solid fa-brain"></i> How to Predict</h2>
+            <ol>
+                <li>Enter the <strong>Product ID</strong>.</li>
+                <li>Enter the <strong>Year</strong>.</li>
+                <li>Enter the <strong>Month</strong>.</li>
+            </ol>
+        </div>
+
+        <!-- Alert System -->
+        <div class="instruction-card alert-card">
+            <h2><i class="fa-solid fa-bell"></i> Alert System</h2>
+            <ol>
+                <li><strong>Alert 01 - Low Stock:</strong> Notifies when product quantity is low.</li>
+                <li><strong>Alert 02 - Monthly Sales Predictions:</strong> Shows expected monthly sales.</li>
+                <li><strong>Alert 03 - Daily Usage & Remaining Stock:</strong> Displays daily consumption and current stock.</li>
+            </ol>
+        </div>
+
+        <!-- How to Add Inventory -->
+        <div class="instruction-card add-card">
+            <h2><i class="fa-solid fa-boxes"></i> How to Add Inventory</h2>
+            <ol>
+                <li>Enter the <strong>Product ID</strong>.</li>
+                <li>Enter the <strong>Quantity</strong> (use <strong>+</strong> to add, <strong>-</strong> to reduce).</li>
+            </ol>
+        </div>
+
+        <!-- Dashboards -->
+        <div class="instruction-card dashboard-card">
+            <h2><i class="fa-solid fa-chart-line"></i> Dashboards</h2>
+            <p>
+                View visualizations and analytics of inventory, predictions, and performance metrics.
+                Customize filters to refine results and monitor your system efficiently.
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
