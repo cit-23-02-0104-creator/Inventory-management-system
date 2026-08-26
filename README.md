@@ -856,6 +856,8 @@ Some of the available screens/features include:
 
 You can add screenshots to this README using:
 
+###  Main
+![main](Images/main.png)
 
 ### 🔐 Login
 
