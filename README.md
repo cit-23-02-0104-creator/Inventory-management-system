@@ -2,7 +2,7 @@
 # 📦 Inventory Management & Stock Prediction System
 
 <p align="center">
-  <img src="static/images/logo.png" alt="Inventory Management System Logo" width="180">
+  <img src="Images/logo.png" alt="Inventory Management System Logo" width="180">
 </p>
 
 <h3 align="center">
