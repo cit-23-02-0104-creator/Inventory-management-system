@@ -857,7 +857,7 @@ Some of the available screens/features include:
 
 You can add screenshots to this README using:
 
-```markdown
+
 ![Login](Images/Login.gif)
 
 ![Dashboard](Images/main.png)
@@ -869,7 +869,7 @@ You can add screenshots to this README using:
 ![Inventory](Images/add.png)
 
 ![Analytics Dashboard](Images/dashboards.jpg)
-```
+
 
 ---
 
