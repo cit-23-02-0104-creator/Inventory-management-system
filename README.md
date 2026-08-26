@@ -847,16 +847,14 @@ Images/
 
 Some of the available screens/features include:
 
-* Login
 * Main Dashboard
+* Login
 * Inventory Management
 * Stock Prediction
 * Forecasting
 * Analytics Dashboard
 
-You can add screenshots to this README using:
-
-###  Main
+###  Main Dashboard
 ![main](Images/main.png)
 
 ### 🔐 Login
