@@ -54,27 +54,27 @@ The system combines traditional inventory management with **Machine Learning-bas
 
 It provides features for:
 
-* 🔐 User Registration & Login
-* 📦 Inventory Management
-* 📈 Stock Monitoring
-* ⚠️ Low Stock Detection
-* 🚫 Out-of-Stock Detection
-* 🤖 Machine Learning Stock Prediction
-* 🔮 Manual Future Stock Forecasting
-* 📊 Sales & Stock Analytics
-* 📧 Automated Email Alerts
-* 📅 Daily Stock Reports
-* 📆 Monthly Stock Forecast Reports
-* 📊 Power BI Analytics Dashboards
-* 🗄️ SQLite Database
-* 🌐 Flask Web Interface
-* ☁️ Cloud Deployment Support
+* User Registration & Login
+* Inventory Management
+* Stock Monitoring
+* Low Stock Detection
+* Out-of-Stock Detection
+* Machine Learning Stock Prediction
+* Manual Future Stock Forecasting
+* Sales & Stock Analytics
+* Automated Email Alerts
+* Daily Stock Reports
+* Monthly Stock Forecast Reports
+* Power BI Analytics Dashboards
+* SQLite Database
+* Flask Web Interface
+* Cloud Deployment Support
 
 ---
 
 # ✨ Main Features
 
-## 🔐 1. User Registration & Login
+##  1. User Registration & Login
 
 Users can create an account and securely log into the system.
 
@@ -99,7 +99,7 @@ User
 
 ---
 
-## 📦 2. Inventory Management
+##  2. Inventory Management
 
 Users can manage product stock through the inventory interface.
 
@@ -115,7 +115,7 @@ Users can increase or decrease stock quantities based on inventory changes.
 
 ---
 
-## ⚠️ 3. Low Stock & Out-of-Stock Monitoring
+##  3. Low Stock & Out-of-Stock Monitoring
 
 The system automatically checks inventory levels.
 
@@ -135,7 +135,7 @@ LOW_STOCK_THRESHOLD = 25
 
 ---
 
-# 🤖 4. Machine Learning Stock Prediction
+#  4. Machine Learning Stock Prediction
 
 One of the main features of this project is the **Machine Learning-based stock prediction system**.
 
@@ -172,7 +172,7 @@ Stock_prediction_model.pkl
 
 ---
 
-# 🔮 5. Manual Stock Prediction
+#  5. Manual Stock Prediction
 
 Users can select:
 
@@ -211,31 +211,31 @@ Required Stock to Add
 
 ---
 
-# 📧 6. Automated Email Alerts
+#  6. Automated Email Alerts
 
 The application includes automated Gmail-based notification functionality.
 
 The system can send:
 
-### ⚠️ Low Stock Alerts
+###  Low Stock Alerts
 
 When products reach low-stock levels.
 
-### 🚫 Out-of-Stock Alerts
+###  Out-of-Stock Alerts
 
 When product stock reaches zero.
 
-### 📋 Daily Stock Reports
+###  Daily Stock Reports
 
 A daily summary of current inventory.
 
-### 🔮 Monthly Stock Forecast
+###  Monthly Stock Forecast
 
 A prediction of the stock required for the upcoming month.
 
 ---
 
-# ⏰ Automated Scheduler
+#  Automated Scheduler
 
 The project uses the Python `schedule` library for background tasks.
 
@@ -263,7 +263,7 @@ Monthly Stock Forecast
 
 ---
 
-# 📊 7. Analytics Dashboards
+#  7. Analytics Dashboards
 
 The project includes Power BI dashboard files:
 
@@ -285,7 +285,7 @@ These dashboards can be used to analyze:
 
 ---
 
-# 🧠 Machine Learning Workflow
+#  Machine Learning Workflow
 
 The complete ML workflow is:
 
@@ -382,40 +382,40 @@ Inventory-management-system/
 
 # 🛠️ Technologies Used
 
-## 💻 Backend
+##  Backend
 
 * Python
 * Flask
 * SQLite
 * Gunicorn
 
-## 📊 Data Processing
+##  Data Processing
 
 * Pandas
 * NumPy
 
-## 🤖 Machine Learning
+##  Machine Learning
 
 * Scikit-learn
 * Random Forest Regression
 * Joblib
 
-## 🎨 Frontend
+##  Frontend
 
 * HTML5
 * CSS3
 * JavaScript
 
-## 📧 Email
+##  Email
 
 * Python SMTP
 * Gmail SMTP Server
 
-## 📊 Business Intelligence
+##  Business Intelligence
 
 * Microsoft Power BI
 
-## 🚀 Deployment
+##  Deployment
 
 * Gunicorn
 * Procfile
@@ -423,7 +423,7 @@ Inventory-management-system/
 
 ---
 
-# 📋 Requirements
+#  Requirements
 
 Before running the project, make sure you have:
 
@@ -447,7 +447,7 @@ pip --version
 
 # 🚀 Installation & Setup
 
-## 1️⃣ Clone the Repository
+## 1️ Clone the Repository
 
 ```bash
 git clone https://github.com/cit-23-02-0104-creator/Inventory-management-system.git
@@ -461,7 +461,7 @@ cd Inventory-management-system
 
 ---
 
-## 2️⃣ Create a Virtual Environment
+## 2️ Create a Virtual Environment
 
 ### Windows
 
@@ -495,7 +495,7 @@ source .venv/bin/activate
 
 ---
 
-# 3️⃣ Install Dependencies
+# 3️ Install Dependencies
 
 Run:
 
@@ -519,7 +519,7 @@ Gunicorn
 
 ---
 
-# 🔑 4️⃣ Configure Environment Variables
+#  4️ Configure Environment Variables
 
 Create a `.env` file or configure the environment variable:
 
@@ -573,7 +573,7 @@ This can be useful when deploying the application to a cloud hosting platform.
 
 ---
 
-# 🤖 Retrain the Machine Learning Model
+#  Retrain the Machine Learning Model
 
 If you want to train the model again using the included sales dataset:
 
@@ -609,7 +609,7 @@ random_state = 42
 
 ---
 
-# 📧 Gmail Email Configuration
+#  Gmail Email Configuration
 
 The application contains Gmail notification functionality.
 
@@ -820,20 +820,20 @@ The project includes the necessary files for cloud deployment.
 
 Possible future improvements include:
 
-* 📱 Mobile-responsive improvements
-* 👥 Role-based user management
-* 🔐 Two-factor authentication
-* 🔑 Better secret/credential management
-* 📊 More advanced analytics
-* 🤖 Advanced forecasting algorithms
-* 📈 Real-time dashboard updates
-* 🛒 Supplier management
-* 🧾 Purchase order management
-* 📦 Barcode/QR code integration
-* 🔔 Browser notifications
-* ☁️ Cloud database integration
-* 🧠 Deep Learning-based demand forecasting
-* 📡 REST API integration
+* Mobile-responsive improvements
+* Role-based user management
+* Two-factor authentication
+* Better secret/credential management
+* More advanced analytics
+* Advanced forecasting algorithms
+* Real-time dashboard updates
+* Supplier management
+* Purchase order management
+* Barcode/QR code integration
+* Browser notifications
+* Cloud database integration
+* Deep Learning-based demand forecasting
+* REST API integration
 
 ---
 
@@ -842,7 +842,7 @@ Possible future improvements include:
 The project contains interface images inside:
 
 ```text
-static/images/
+Images/
 ```
 
 Some of the available screens/features include:
@@ -858,17 +858,17 @@ Some of the available screens/features include:
 You can add screenshots to this README using:
 
 ```markdown
-![Login](static/images/Login.gif)
+![Login](Images/Login.gif)
 
-![Dashboard](static/images/main.png)
+![Dashboard](Images/main.png)
 
-![Stock Prediction](static/images/Predict.png)
+![Stock Prediction](Images/Predict.png)
 
-![Forecast](static/images/Forecast.png)
+![Forecast](Images/Forecast.png)
 
-![Inventory](static/images/add.png)
+![Inventory](Images/add.png)
 
-![Analytics Dashboard](static/images/dashboards.jpg)
+![Analytics Dashboard](Images/dashboards.jpg)
 ```
 
 ---
