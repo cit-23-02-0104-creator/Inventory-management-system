@@ -848,7 +848,6 @@ Images/
 Some of the available screens/features include:
 
 * Login
-* Signup
 * Main Dashboard
 * Inventory Management
 * Stock Prediction
@@ -858,17 +857,33 @@ Some of the available screens/features include:
 You can add screenshots to this README using:
 
 
+### 🔐 Login
+
 ![Login](Images/Login.gif)
 
-![Dashboard](Images/main.png)
+### 🤖 Stock Prediction
 
 ![Stock Prediction](Images/Predict.png)
 
-![Forecast](Images/Forecast.png)
+### 🔮 Stock Forecast
 
-![Inventory](Images/add.png)
+![Stock Forecast](Images/Forecast.png)
+
+### 📦 Inventory Management
+
+![Inventory Management](Images/add.png)
+
+### 📊 Analytics Dashboard
 
 ![Analytics Dashboard](Images/dashboards.jpg)
+
+### 📈 Dashboard
+
+![Dashboard](Images/dashboards1.jpg)
+
+### 🧠 System Behavior
+
+![System Behavior](Images/behavior.png)
 
 
 ---
