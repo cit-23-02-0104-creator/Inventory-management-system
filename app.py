@@ -16,11 +16,30 @@ import math
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-only-change-this-secret")
 
+# Vercel's deployed filesystem is read-only except for /tmp.
+# Keep writable runtime files (SQLite + inventory updates) in /tmp.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+RUNTIME_DIR = os.path.join("/tmp", "inventory_management_system")
+os.makedirs(RUNTIME_DIR, exist_ok=True)
+
+DB_PATH = os.path.join(RUNTIME_DIR, "users.db")
+SOURCE_INVENTORY_PATH = os.path.join(BASE_DIR, "inventory_data.csv")
+RUNTIME_INVENTORY_PATH = os.path.join(RUNTIME_DIR, "inventory_data.csv")
+MODEL_PATH = os.path.join(BASE_DIR, "Stock_prediction_model.pkl")
+SALES_MONTHLY_PATH = os.path.join(BASE_DIR, "sales_monthly.csv")
+RAW_SALES_PATH = os.path.join(BASE_DIR, "supermarket_sales.csv")
+
+# Copy the read-only deployment inventory into the writable runtime area once.
+# This lets the Update Inventory page work on Vercel during a warm instance.
+if not os.path.exists(RUNTIME_INVENTORY_PATH):
+    import shutil
+    shutil.copyfile(SOURCE_INVENTORY_PATH, RUNTIME_INVENTORY_PATH)
+
 # ==========================
 # Initialize SQLite DB
 # ==========================
 def init_db():
-    conn = sqlite3.connect("users.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("""CREATE TABLE IF NOT EXISTS users (
                       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -37,24 +56,32 @@ init_db()
 # ==========================
 # Load ML Model & Data
 # ==========================
-model = joblib.load("Stock_prediction_model.pkl")
-inventory_df = pd.read_csv("inventory_data.csv")
-sales_data = pd.read_csv("supermarket_sales.csv")
-sales_data['Date'] = pd.to_datetime(sales_data['Date'])
+model = joblib.load(MODEL_PATH)
+inventory_df = pd.read_csv(RUNTIME_INVENTORY_PATH)
+
+# Use a small pre-computed monthly sales dataset on Vercel instead of loading
+# the original 44 MB raw sales file and doing a large groupby at every cold start.
+if os.path.exists(SALES_MONTHLY_PATH):
+    sales_monthly = pd.read_csv(SALES_MONTHLY_PATH, parse_dates=['Date'])
+else:
+    sales_data = pd.read_csv(
+        RAW_SALES_PATH,
+        usecols=['Product_ID', 'Product_Name', 'Category', 'Date', 'Units_Sold'],
+        parse_dates=['Date']
+    )
+    sales_monthly = sales_data.groupby(
+        ['Product_ID','Product_Name','Category', pd.Grouper(key='Date', freq='ME')]
+    )['Units_Sold'].sum().reset_index()
+    sales_monthly['Year'] = sales_monthly['Date'].dt.year
+    sales_monthly['Month'] = sales_monthly['Date'].dt.month
+    for lag in [1, 2, 3, 6]:
+        sales_monthly[f'Lag_{lag}'] = sales_monthly.groupby('Product_ID')['Units_Sold'].shift(lag)
+    sales_monthly.dropna(inplace=True)
 
 if 'Product_ID' in inventory_df.columns:
     inventory_df['Product_ID'] = inventory_df['Product_ID'].astype(str)
-if 'Product_ID' in sales_data.columns:
-    sales_data['Product_ID'] = sales_data['Product_ID'].astype(str)
-
-sales_monthly = sales_data.groupby(
-    ['Product_ID','Product_Name','Category', pd.Grouper(key='Date', freq='ME')]
-)['Units_Sold'].sum().reset_index()
-sales_monthly['Year'] = sales_monthly['Date'].dt.year
-sales_monthly['Month'] = sales_monthly['Date'].dt.month
-for lag in [1,2,3,6]:
-    sales_monthly[f'Lag_{lag}'] = sales_monthly.groupby('Product_ID')['Units_Sold'].shift(lag)
-sales_monthly.dropna(inplace=True)
+if 'Product_ID' in sales_monthly.columns:
+    sales_monthly['Product_ID'] = sales_monthly['Product_ID'].astype(str)
 
 LOW_STOCK_THRESHOLD = 25
 
@@ -67,7 +94,7 @@ def safe_qty(val):
         return 0
 
 def get_all_users():
-    conn = sqlite3.connect("users.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("SELECT username,email,gmail_password FROM users")
     users = cursor.fetchall()
@@ -220,7 +247,7 @@ def signup():
         email = request.form['email']
         gmail_password = request.form['gmail_password']
         password = generate_password_hash(request.form['password'])
-        conn = sqlite3.connect("users.db")
+        conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         try:
             cursor.execute("INSERT INTO users (username,email,gmail_password,password) VALUES (?,?,?,?)",
@@ -238,7 +265,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        conn = sqlite3.connect("users.db")
+        conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM users WHERE username=?", (username,))
         user = cursor.fetchone()
@@ -278,7 +305,7 @@ def add_inventory():
         idx = inventory_df[inventory_df['Product_ID'].astype(str) == product_id].index
         if not idx.empty:
             inventory_df.loc[idx, 'Stock_Quantity'] = inventory_df.loc[idx, 'Stock_Quantity'].apply(safe_qty) + change
-            inventory_df.to_csv("inventory_data.csv", index=False)
+            inventory_df.to_csv(RUNTIME_INVENTORY_PATH, index=False)
     return render_template("add_inventory.html", username=session['user']['username'])
 
 @app.route('/dashboards')
@@ -293,7 +320,7 @@ def instructions():
 
 @app.route('/main')
 def main_page():
-    return render_template('main.html')
+    return render_template('Main.html')
 
 @app.route('/intro')
 def intro():
