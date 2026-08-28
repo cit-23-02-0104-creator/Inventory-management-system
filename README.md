@@ -123,9 +123,9 @@ The system automatically checks inventory levels.
 
 | Stock Level | Status          |
 | ----------- | --------------- |
-| `0`         | 🚫 Out of Stock |
-| `< 25`      | ⚠️ Low Stock    |
-| `>= 25`     | ✅ Normal Stock  |
+| `0`         |  Out of Stock |
+| `< 25`      |  Low Stock    |
+| `>= 25`     |  Normal Stock  |
 
 The low-stock threshold is currently configured as:
 
@@ -141,7 +141,7 @@ One of the main features of this project is the **Machine Learning-based stock p
 
 The application uses a:
 
-### 🌳 Random Forest Regression Model
+###  Random Forest Regression Model
 
 The model predicts future product sales using historical sales information.
 
@@ -790,27 +790,27 @@ The main objectives of this project are:
 
 # 🌟 Advantages
 
-### ✅ Better Inventory Control
+###  Better Inventory Control
 
 Users can easily monitor and update inventory.
 
-### ✅ Reduced Stock Shortages
+###  Reduced Stock Shortages
 
 Future demand prediction helps identify products that may require additional stock.
 
-### ✅ Automated Notifications
+###  Automated Notifications
 
 Users can receive stock-related email alerts.
 
-### ✅ Data-Driven Decisions
+###  Data-Driven Decisions
 
 Machine Learning and Power BI dashboards provide useful insights.
 
-### ✅ Easy to Use
+###  Easy to Use
 
 The Flask web interface provides a simple way to interact with the system.
 
-### ✅ Deployment Ready
+###  Deployment Ready
 
 The project includes the necessary files for cloud deployment.
 
